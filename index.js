@@ -15,6 +15,9 @@ app.use(
   })
 );
 
+app.use(cors());
+app.options("*", cors());
+
 app.get("/", (req, res) => {
   res.json({ message: "ok" });
 });
@@ -31,8 +34,6 @@ app.use((err, req, res, next) => {
   res.status(statusCode).json({ message: err.message });
   return;
 });
-
-app.use(cors());
 
 app.listen(port, () => {
   console.log(`Group Organizer API Listening at http://localhost:${port}`);
